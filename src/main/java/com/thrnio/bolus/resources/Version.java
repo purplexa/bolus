@@ -1,7 +1,7 @@
 package com.thrnio.bolus.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.thrnio.bolus.core.OptionsListing;
+import com.thrnio.bolus.api.OptionsListing;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
@@ -21,9 +21,10 @@ public class Version {
   @OPTIONS
   @Timed
   public Response listOptions() {
-    OptionsListing list = new OptionsListing();
-    list.setGet("List version.");
-    list.setOptions("List accepted HTTP verbs.");
+    OptionsListing list = new OptionsListing.Builder()
+        .setGetDescription("List version.")
+        .setOptionsDescription("List accepted HTTP verbs.")
+        .build();
     return Response.status(200)
         .entity(list)
         .header("Allow", "HEAD,GET,OPTIONS")

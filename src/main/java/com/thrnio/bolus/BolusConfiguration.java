@@ -1,10 +1,20 @@
 package com.thrnio.bolus;
 
-import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.NotEmpty;
+import io.dropwizard.Configuration;
 
-import java.lang.String;
+import java.util.Map;
 
 public class BolusConfiguration extends Configuration {
+  private Map<String, Object> kafka;
+
+  @JsonProperty
+  public Map<String, Object> getKafka() {
+    return kafka;
+  }
+
+  @JsonProperty
+  public void setKafka(Map<String, Object> kafka) {
+    this.kafka = kafka;
+  }
 }

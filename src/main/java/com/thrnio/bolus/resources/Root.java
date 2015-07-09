@@ -1,7 +1,7 @@
 package com.thrnio.bolus.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.thrnio.bolus.core.OptionsListing;
+import com.thrnio.bolus.api.OptionsListing;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -18,9 +18,10 @@ public class Root {
   @OPTIONS
   @Timed
   public Response listOptions() {
-    OptionsListing list = new OptionsListing();
-    list.setGet("List available endpoints.");
-    list.setOptions("List accepted HTTP verbs.");
+    OptionsListing list = new OptionsListing.Builder()
+        .setGetDescription("List available endpoints.")
+        .setOptionsDescription("List accepted HTTP verbs.")
+        .build();
     return Response.status(200)
         .entity(list)
         .header("Allow", "HEAD,GET,OPTIONS")
