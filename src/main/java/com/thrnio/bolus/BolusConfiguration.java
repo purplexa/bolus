@@ -6,15 +6,15 @@ import io.dropwizard.Configuration;
 import java.util.Map;
 
 public class BolusConfiguration extends Configuration {
-  private Map<String, Object> kafka;
+  private Map<String, Map<String, Object>> dispatchers;
 
   @JsonProperty
-  public Map<String, Object> getKafka() {
-    return kafka;
+  public Map<String, Map<String, Object>> dispatchers() {
+    return dispatchers;
   }
 
   @JsonProperty
-  public void setKafka(Map<String, Object> kafka) {
-    this.kafka = kafka;
+  public void setDispatchers(Map<String, Map<String, Object>> dispatchers) {
+    this.dispatchers = dispatchers;
   }
 }
